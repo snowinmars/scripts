@@ -1,7 +1,6 @@
 # This script get images from himawari8 sputnik, combine it with imagemagick and set result as wallpaper.
-# ./earthwallpaper <resolution> <xsystem>
-# <resolution> can be 4, 8, 16 or 20 : bigger number - better resolution
-# <xsystem> can be xfce4 or gnome. Default is xfce4
+# ./earthwallpaper <resolution>
+# <resolution> can be 4, 8, 16 or 20 : bigger number - better resolution. Default is 4
 # Deps: imagemagick wget
 # github: https://github.com/snowinmars/scripts/blob/master/earth_wallpaper.sh
 
@@ -48,7 +47,7 @@ do
 	convert +append img_$numblocks"_"*.png "out_"$numblocks".png"
 	rm img_$numblocks"_"*.png
 
-	case $xsystem in
+	case $DESKTOP_SESSION in
 		"xfce4") 
 			xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVGA-0/workspace0/last-image -s $workdir/out_$numblocks.png 
 		;;
