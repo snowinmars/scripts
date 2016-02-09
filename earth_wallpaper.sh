@@ -60,6 +60,7 @@ do
 		"i3")
 			feh --bg-scale ~/Pictures/image.jpg # set
 			echo "exec feh --bg-scale ~/Pictures/image.jpg" >> ~/.config/i3/config # set for autoload
+		;;
 		*)
 			echo Unknown graphical system, can\'t set wallpaper. You can do it manually from $workdir
 		;;
