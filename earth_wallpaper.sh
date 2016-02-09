@@ -1,8 +1,9 @@
-# This script get images from himawari8 sputnik, combine it with imagemagick and set result as wallpaper.
+# This script get images from himawari8 sputnik, combine it with imagemagick and set result as wallpaper. Works with xfce, gnome, i3
 # ./earthwallpaper <resolution>
 # <resolution> can be 4, 8, 16 or 20 : bigger number - better resolution. Default is 4
 # Deps: imagemagick wget
 # github: https://github.com/snowinmars/scripts/blob/master/earth_wallpaper.sh
+# e-mail: marcor@yandex.ru
 
 #!/bin/bash
 
@@ -48,6 +49,7 @@ do
 	convert +append img_$numblocks"_"*.png "out_"$numblocks".png"
 	rm img_$numblocks"_"*.png
 
+	# if it isn't working - write me on e-mail
 	case $DESKTOP_SESSION in
 		"xfce") 
 			xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVGA-0/workspace0/last-image -s $workdir/out_$numblocks.png 
@@ -55,6 +57,9 @@ do
 		"gnome")
 			gconftool-2 -t str -s /desktop/gnome/background/picture_filename $workdir/out_$numblocks.png
 		;;
+		"i3")
+			feh --bg-scale ~/Pictures/image.jpg # set
+			echo «exec feh --bg-scale ~/Pictures/image.jpg» >> ~/.config/i3/config # set for autoload
 		*)
 			echo Unknown graphical system, can\'t set wallpaper. You can do it manually from $workdir
 		;;
