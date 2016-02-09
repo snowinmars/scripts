@@ -10,7 +10,8 @@ do
 	
 	timestamp=$(date -d -1day +%Y/%m/%d/%H%M | sed -r 's/.$/000/')
 	
-	workdir="/home/cutemaj/.earthwallpaper"
+	username=$(getent passwd $UID | sed -e 's/\:.*//')
+	workdir="/home/"$username"/.earthwallpaper"
 
 	if [ ! -d $workdir ]; then
 		mkdir -p $workdir
