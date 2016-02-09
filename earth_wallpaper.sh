@@ -10,6 +10,7 @@ delay=900 # seconds
 
 while true
 do
+	echo $DESKTOP_SESSION
 	width=550
 	numblocks=${1:-4}
 	xsystem=${2:-xfce4}
@@ -48,7 +49,7 @@ do
 	rm img_$numblocks"_"*.png
 
 	case $DESKTOP_SESSION in
-		"xfce4") 
+		"xfce") 
 			xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVGA-0/workspace0/last-image -s $workdir/out_$numblocks.png 
 		;;
 		"gnome")
