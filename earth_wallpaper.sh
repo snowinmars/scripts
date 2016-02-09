@@ -58,8 +58,10 @@ do
 			gconftool-2 -t str -s /desktop/gnome/background/picture_filename $workdir/out_$numblocks.png
 		;;
 		"i3")
-			feh --bg-scale ~/Pictures/image.jpg # set
-			echo "exec feh --bg-scale ~/Pictures/image.jpg" >> ~/.config/i3/config # set for autoload
+			feh --bg-max  $workdir/out_$numblocks.png
+		;;
+		"awesome")
+			feh --bg-max  $workdir/out_$numblocks.png
 		;;
 		*)
 			echo Unknown graphical system, can\'t set wallpaper. You can do it manually from $workdir
