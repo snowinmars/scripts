@@ -17,10 +17,10 @@ do
 	xsystem=${2:-xfce4}
 	level=$numblocks'd' #Level can be 4d, 8d, 16d, 20d
 	
-	timestamp=$(date -d -4hours +%Y/%m/%d/%H%M | sed -r 's/.$/000/') # delay is for timezone
+	timestamp=$(date -d -4hours +%Y/%m/%d/%H%M00) # delay is for timezone
 	
-	username=$(getent passwd $UID | sed -e 's/\:.*//')
-	workdir="/home/"$username"/.earthwallpaper"
+	username="$USER"
+	workdir="$HOME/.earthwallpaper"
 
 	if [ ! -d $workdir ]; then
 		mkdir -p $workdir
