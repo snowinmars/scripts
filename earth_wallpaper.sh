@@ -59,6 +59,6 @@ do
 		;;
 	esac
 
-	echo Done, waiting $(delay) seconds
+	echo Done, waiting $delay seconds
 	sleep $delay
 done
