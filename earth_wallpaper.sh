@@ -1,11 +1,20 @@
+#!/bin/bash
+
 # This script get images from himawari8 sputnik, combine it with imagemagick and set result as wallpaper. Works with xfce, gnome, i3
 # ./earthwallpaper <resolution>
-# <resolution> can be 4, 8, 16 or 20 : bigger number - better resolution. Default is 4
-# Deps: imagemagick wget
-# github: https://github.com/snowinmars/scripts/blob/master/earth_wallpaper.sh
-# e-mail: marcor@yandex.ru
 
-#!/bin/bash
+# You have to fix line 56: path to monitor depends on your monitor type, see habrahabr.ru/post/276845/ for more info.
+# or /home/user/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
+
+# <resolution> can be 4, 8, 16 or 20 : bigger number - better resolution. Default is 4
+
+# Deps: imagemagick wget
+
+# github: https://github.com/snowinmars/scripts/blob/master/earth_wallpaper.sh
+
+# homk
+# e-mail: marcor@yandex.ru
+# GNU/GPL
 
 delay=900 # seconds
 
@@ -16,9 +25,9 @@ do
 	numblocks=${1:-4}
 	xsystem=${2:-xfce4}
 	level=$numblocks'd' #Level can be 4d, 8d, 16d, 20d
-	
+
 	timestamp=$(date -d -4hours +%Y/%m/%d/%H%M | sed -r 's/.$/000/') # delay is for timezone
-	
+
 	username=$(getent passwd $UID | sed -e 's/\:.*//')
 	workdir="/home/"$username"/.earthwallpaper"
 
@@ -51,8 +60,8 @@ do
 
 	# if it isn't working - write me on e-mail
 	case $DESKTOP_SESSION in
-		"xfce") 
-			xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVGA-0/workspace0/last-image -s $workdir/out_$numblocks.png 
+		"xfce")
+			xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDVI-I-1/workspace0/last-image -s $workdir/out_$numblocks.png
 		;;
 		"gnome")
 			gconftool-2 -t str -s /desktop/gnome/background/picture_filename $workdir/out_$numblocks.png
