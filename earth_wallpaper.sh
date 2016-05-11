@@ -70,6 +70,9 @@ do
 			feh --bg-scale ~/Pictures/image.jpg # set
 			echo "exec feh --bg-scale ~/Pictures/image.jpg" >> ~/.config/i3/config # set for autoload
 		;;
+		"ubuntu")
+			gsettings set org.gnome.desktop.background picture-uri file://$workdir/out_$numblocks.png
+		;;
 		*)
 			echo Unknown graphical system, can\'t set wallpaper. You can do it manually from $workdir
 		;;
