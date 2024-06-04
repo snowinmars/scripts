@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# warning: kills all sessions
+if $(tmux has-session 2>/dev/null); then tmux kill-session; fi
+
+# use if you need
+# if $(tmux has-session 2>/dev/null); then tmux -2u att; exit; fi
+
+tmux new-session -d -n bash -s 0 -c "/cygdrive/j/prg/geo"
+sleep 0.2
+
+# main head pane
+tmux split-window -t 0:0.0 -v
+
+# create 4 horisontal panes
+tmux split-window -t 0:0.1 -v
+# tmux split-window -t 0:0.2 -v
+tmux split-window -t 0:0.1 -v
+
+# split each pane in two
+# # +2 due to new pane will be inserted as +1
+tmux split-window -t 0:0.1 -h
+tmux split-window -t 0:0.3 -h
+tmux split-window -t 0:0.5 -h
+# tmux split-window -t 0:0.7 -h
+
+tmux send-keys -t 0:0.1 "cd /cygdrive/j/prg/geo/kloud-storage/Kloud.Storage.Local.Api/src/bin/ServerAllInOneDebug/netcoreapp3.1" Enter
+tmux send-keys -t 0:0.2 "cd /cygdrive/j/prg/geo/kloud-storage/Kloud.Storage.Remote.Api/src/bin/ServerAllInOneDebug/netcoreapp3.1" Enter
+tmux send-keys -t 0:0.3 "cd /cygdrive/j/prg/geo/kloud-account/Kloud.Account.Local.Api/src/bin/ServerAllInOneDebug/netcoreapp3.1" Enter
+tmux send-keys -t 0:0.4 "cd /cygdrive/j/prg/geo/kloud-account/Kloud.Account.Remote.Api/src/bin/ServerAllInOneDebug/netcoreapp3.1" Enter
+tmux send-keys -t 0:0.5 "cd /cygdrive/j/prg/geo/kloud-calibration/Kloud.Calibration.Local.Api/src/bin/ServerAllInOneDebug/netcoreapp3.1" Enter
+tmux send-keys -t 0:0.6 "cd /cygdrive/j/prg/geo/kloud-calibration/Kloud.Calibration.Remote.Api/src/bin/ServerAllInOneDebug/netcoreapp3.1" Enter
+
+tmux send-keys -t 0:0.1 "./Kloud.Utils.Runner.exe"
+tmux send-keys -t 0:0.2 "./Kloud.Utils.Runner.exe"
+tmux send-keys -t 0:0.3 "./Kloud.Utils.Runner.exe"
+tmux send-keys -t 0:0.4 "./Kloud.Utils.Runner.exe"
+tmux send-keys -t 0:0.5 "./Kloud.Utils.Runner.exe"
+tmux send-keys -t 0:0.6 "./Kloud.Utils.Runner.exe"
+
+tmux select-pane -t 0:0.0
+
+sleep 0.2
+tmux -2u att

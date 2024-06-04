@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# warning: kills all sessions
+if $(tmux has-session 2>/dev/null); then tmux kill-session; fi
+
+# use if you need
+# if $(tmux has-session 2>/dev/null); then tmux -2u att; exit; fi
+
+tmux new-session -d -n bash -s 0 -c "/cygdrive/j/prg/geo"
+sleep 0.2
+
+tmux split-window -t 0:0.0 -v
+tmux split-window -t 0:0.1 -h
+
+tmux send-keys -t 0:0.1 "cd /cygdrive/j/prg/geo" Enter
+tmux send-keys -t 0:0.2 "cd /cygdrive/j/prg/geo" Enter
+
+tmux setw synchronize-panes on
+
+tmux select-pane -t 0:0.0
+
+sleep 0.2
+tmux -2u att
