@@ -1,0 +1,32 @@
+{
+  "name": "node-scripts",
+  "version": "0.0.0",
+  "private": true,
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "npm run build && npm run check",
+    "build": "npx gulp",
+    "check": "npm run sln-check && npm run pkg-check && npm run json-check",
+    "pkg-check": "node dist/pkg-check.js",
+    "sln-check": "node dist/sln-check.js",
+    "json-check": "node dist/json-check.js",
+    "lint": "eslint --ext .ts src/ --color",
+    "lint-fix": "eslint --ext .ts src/ --color --fix"
+  },
+  "dependencies": {
+    "glob": "7.2.0"
+  },
+  "devDependencies": {
+    "@types/glob": "7.2.0",
+    "@types/node": "20.5.9",
+    "@typescript-eslint/eslint-plugin": "6.6.0",
+    "@typescript-eslint/parser": "6.6.0",
+    "del": "6.1.1",
+    "eslint": "8.48.0",
+    "gulp": "4.0.2",
+    "gulp-cli": "2.3.0",
+    "gulp-typescript": "6.0.0-alpha.1",
+    "ts-node": "10.4.0",
+    "typescript": "5.2.2"
+  }
+}
